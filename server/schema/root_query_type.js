@@ -12,7 +12,9 @@ const RootQuery = new GraphQLObjectType({
     songs: {
       type: new GraphQLList(SongType),
       resolve() {
-        return Song.find({});
+        return Song.find({})
+          .then(songs=>{console.log(songs);return songs})
+          .catch(err=>console.log(err));
       }
     },
     song: {
